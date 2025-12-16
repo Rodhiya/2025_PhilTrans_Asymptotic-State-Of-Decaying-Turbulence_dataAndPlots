@@ -698,3 +698,29 @@ def gridMod_eff(time_list, eff_ind_list):
     fig.tight_layout()
     plt.savefig('figures/Figure_2_gridMod_eff_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_eff
+
+def ene_spect_t0(karr_list, ene_spect_t0_list):
+    fig = plt.figure(figsize=(6.5,5))
+    ax = fig.add_subplot(1,1,1)
+
+    label_list = ['$Re_{\lambda} =30$', '$Re_{\lambda} =45$', '$Re_{\lambda} =70$', '$Re_{\lambda} =93$', '$Re_{\lambda} =105$', '$Re_{\lambda} =145$']
+    color_list = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#8c564b', '#9467bd']
+    for i in range(len(ene_spect_t0_list)):
+        ax.loglog(karr_list[i], ene_spect_t0_list[i], label = label_list[i], color=color_list[i])
+
+    c=1
+    ax.loglog(karr_list[-2][1:20], c*np.power(karr_list[-2][1:20],2), color='k', linestyle='-.')#, label='-1 slope')
+    ax.text(1e-1, 3e-2, '$k^2$', fontsize=20)
+    c=2
+    ax.loglog(karr_list[-1][35:400], c/np.power(karr_list[-1][35:400],5/3), color='k', linestyle='-.')#, label='-1 slope')
+    ax.text(1e1, 1e-1, '$k^{-5/3}$', fontsize=20)
+    ax.legend(fontsize=16)
+    ax.set_xlabel('$kL$', fontsize=18)
+    ax.set_ylabel(r'$\frac{E(k)}{E_{n} L}$', fontsize=20, rotation=0, labelpad=25)
+    ax.set_title('(a) Energy spectrum at time=0 for BS spectra', fontsize=20)
+    ax.set_xlim(1e-2,2e2)
+    ax.set_ylim(1e-6,1e0)
+    ax.tick_params(axis='both', which='major', labelsize=15)
+    fig.tight_layout()
+    plt.savefig('figures/Figure_1a_ene_spect_t0_BS.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax
