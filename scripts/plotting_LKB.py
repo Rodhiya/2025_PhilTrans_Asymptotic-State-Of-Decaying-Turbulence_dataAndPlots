@@ -395,3 +395,46 @@ def migdal_lenVSene(time_re145, migdal_len_re145, totE_re145):
     fig.tight_layout()
     fig.savefig("figures/Figure_11b_migdal_lenVSene_LKB.pdf", dpi=300, bbox_inches = 'tight')
     return fig, ax_shifted
+
+
+def zeta2(zeta2_array, time_array, x_arr, f_re145_value_all):
+    
+    shash_theory_long = np.genfromtxt("data/theoretical_strFun_slope.csv",delimiter=",")
+    diff = sc.mean_of_curves(np.log(x_arr),f_re145_value_all,shash_theory_long[:,1]-0.0,shash_theory_long[:,0])
+    fig = plt.figure()
+    ax_zeta2 = fig.add_subplot(111)
+
+    for i in range(time_array.shape[0]):
+        ax_zeta2.plot(np.log(x_arr), zeta2_array[i], '--', label="Time = {:.2f}".format(time_array[i]))
+    ax_zeta2.plot(shash_theory_long[shash_theory_long[:,0]>np.min(f_re145_value_all),1]+diff, shash_theory_long[shash_theory_long[:,0]>np.min(f_re145_value_all),0], label="Migdal's theory")
+    ax_zeta2.set_xlabel('$\log x$', fontsize=18)
+    ax_zeta2.set_ylabel('$\zeta_2(x)$', fontsize=18)
+    ax_zeta2.set_title('(a) Time evolution of $\zeta_2(x,t)$ for LKB spectra ($Re_{\lambda}=145$)', fontsize=18)
+    ax_zeta2.tick_params(axis='both', which='major', labelsize=16)
+
+    # ax_zeta2.set_xlim([0,22])
+    # ax_zeta2.set_ylim([0,1])
+    ax_zeta2.legend(fontsize=16)
+    fig.tight_layout()
+    # plt.savefig('figures/Figure_13a_zeta2_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax_zeta2
+
+def fx(f_re145_value_all, f_re145_err_all, x_arr):
+    shash_theory_long = np.genfromtxt("data/theoretical_strFun_slope.csv",delimiter=",")
+    diff = sc.mean_of_curves(np.log(x_arr),f_re145_value_all,shash_theory_long[:,1]-0.0,shash_theory_long[:,0])
+
+    fig = plt.figure()
+    ax_fx = fig.add_subplot(111)
+    ax_fx.plot(np.log(x_arr), f_re145_value_all, color='#ff7f0e', label="Simulation: $Re_{\\lambda} = 145$")
+    ax_fx.fill_between(np.log(x_arr), f_re145_value_all-f_re145_err_all, f_re145_value_all+f_re145_err_all, color='#1f77b4', alpha=0.3)
+    ax_fx.plot(shash_theory_long[shash_theory_long[:,0]>np.min(f_re145_value_all),1]+diff, shash_theory_long[shash_theory_long[:,0]>np.min(f_re145_value_all),0], label="Migdal's theory")
+    ax_fx.text(-2.5, 1.7, "Migdal's theory", fontsize=18, color='#ff7f0e')
+    ax_fx.text(0.4, 1.7, "Simulation: $Re_{\\lambda}=145$", fontsize=18, color='#1f77b4')
+    ax_fx.set_xlabel('$\log x$', fontsize=20)
+    ax_fx.set_ylabel('$f(x)$', fontsize=20)
+    ax_fx.set_title('(b) $f(x,t)$ for LKB spectra ($Re_{\\lambda}=145$)', fontsize=20)
+    ax_fx.tick_params(axis='both', which='major', labelsize=18)
+
+    fig.tight_layout()    
+    # plt.savefig('figures/Figure_13b_fx_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax_fx
