@@ -258,3 +258,6 @@ def ene_spect_slope(karr_list, spect_slope_list, time_arr):
     fig.tight_layout()
     plt.savefig('figures/Figure_9b_ene_slope_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_slope
+
+
+    def migdal_ln()
