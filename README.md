@@ -14,9 +14,9 @@ This repository contains the processed datasets, analysis scripts, and figure-ge
 
 ```text
 .
-├── data/        # Processed data files used for plotting (e.g., .npy, .csv, .h5)
+├── data/        # Processed binary data files used for plotting (.npy)
 ├── figures/     # Output directory for generated figures
-├── scripts/     # Analysis and figure-generation scripts (Python/MATLAB/etc.)
+├── scripts/     # Analysis and figure-generation scripts (Python)
 └── README.md    # This file
 ```
 
