@@ -260,4 +260,92 @@ def ene_spect_slope(karr_list, spect_slope_list, time_arr):
     return fig, ax_slope
 
 
-    def migdal_ln()
+def migdal_len(time_list, migdal_len_list):
+    colors_list = ['#1f77b4', '#ff7f0e', '#2ca02c']
+    label_list = ['$Re_{\\lambda}=93$', '$Re_{\\lambda}=105$', '$Re_{\\lambda}=145$']
+    fig = plt.figure(figsize=(6.5,5))
+    ax = fig.add_subplot(1,1,1)
+    L_box = 2*np.pi
+
+    for i in range(len(time_list)):
+        ax.plot(time_list[i], migdal_len_list[i]/L_box, color=colors_list[i], label=label_list[i])
+    
+    cl=0.00012
+    s=500
+    f=50000
+
+    ax.loglog(time_list[2][s:f], cl*(time_list[2][s:f])**(0.53), color='grey', linestyle='-.')
+    ax.text(0.57, 0.3,f"Slope =  {0.53:.2f}", fontsize=16, color='k', transform=ax.transAxes)
+
+    # --- MODIFIED TICK PARAMETERS START ---
+
+    # 1. Set major ticks to be visible on all four sides (top, bottom, left, right)
+    ax.tick_params(axis='both', which='major', labelsize=18,
+                direction='in', # Optional: makes ticks point inwards
+                top=True, right=True, bottom=True, left=True,
+                length=6, width=1.2) # Optional: customize major tick appearance
+
+    # 2. Add minor ticks and ensure they are also on all four sides
+    ax.tick_params(which='minor',
+                direction='in', # Optional: makes ticks point inwards
+                top=True, right=True, bottom=True, left=True,
+                length=3, width=0.75) # Optional: customize minor tick appearance
+
+    ax.set_xlabel('$t/T_{eddy,0}$', fontsize=16)
+    ax.set_ylabel('$L_M/L_{box}$', fontsize=16)
+    ax.set_title('(c) Migdal length for LKB spectra', fontsize=18)
+    ax.legend(fontsize=18)
+    # ax.legend(fontsize=18,bbox_to_anchor=(1., 1), loc='upper left')
+
+    ax.set_xlim(1e-1,1e4)
+    ax.set_ylim(1e-4,1e-1)
+    plt.tight_layout()
+    plt.savefig('figures/Figure_10c_migdal_len_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax
+
+def migdalLen_parabolaFit(time_re145, migdal_len_re145):
+    print("time_re145.shape: ", time_re145.shape)
+    print("migdal_len_re145.shape: ", migdal_len_re145.shape)
+    migdal_len_re145 = migdal_len_re145[time_re145>=20]; time_re145 = time_re145[time_re145>=20]
+    migdal_len_re145 = migdal_len_re145[time_re145<=2000]; time_re145 = time_re145[time_re145<=2000]
+
+
+
+    print("time_re145.shape: ", time_re145.shape)
+    print("migdal_len_re145.shape: ", migdal_len_re145.shape)
+
+    coefficients = np.polyfit(migdal_len_re145[:], time_re145[:], 2)
+    print('coefficients: ', coefficients)
+
+
+    # 3. Create a polynomial function from the coefficients
+    parabola_model = np.poly1d(coefficients)
+    time_fit = parabola_model(migdal_len_re145[:])
+
+    fig = plt.figure(figsize=(6.5,5))
+    ax = fig.add_subplot(1,1,1)
+
+    ax.plot(migdal_len_re145, time_re145, label='Simulation: $Re_{\lambda}=145$')
+    ax.plot(migdal_len_re145, time_fit, '--', label="$\\frac{t}{T_{eddy,0}} = -14.6 + 2020.0 L + 221317.1 L^2$")
+
+
+    ax.tick_params(axis='both', which='major', labelsize=18,
+                direction='in', # Optional: makes ticks point inwards
+                top=True, right=True, bottom=True, left=True,
+                length=6, width=1.2) # Optional: customize major tick appearance
+
+    # 2. Add minor ticks and ensure they are also on all four sides
+    ax.tick_params(which='minor',
+                direction='in', # Optional: makes ticks point inwards
+                top=True, right=True, bottom=True, left=True,
+                length=3, width=0.75) # Optional: customize minor tick appearance
+
+    ax.set_ylabel('$t/T_{eddy,0}$', fontsize=20)
+    ax.set_xlabel('$L_M(t)$', fontsize=20)
+    ax.set_title('(d) Parabolic fit of $L_M(t)$ for LKB spectra ($Re_{\lambda}=145$)', fontsize=18)
+    ax.set_xlim(0, 0.09)
+    ax.set_ylim(20,2000)
+    ax.legend(fontsize=16)
+    plt.tight_layout()
+    plt.savefig('figures/Figure_10d_migdal_len_parabolaFit_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax
