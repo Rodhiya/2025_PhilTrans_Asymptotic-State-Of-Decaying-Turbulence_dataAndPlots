@@ -696,5 +696,5 @@ def gridMod_eff(time_list, eff_ind_list):
     ax_eff.tick_params(axis='both', which='major', labelsize=18)
     ax_eff.legend(fontsize=14)
     fig.tight_layout()
-    plt.savefig('figures/Figure_1_gridMod_eff_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('figures/Figure_2_gridMod_eff_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_eff
