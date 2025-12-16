@@ -636,3 +636,39 @@ def fx(f_re145_value_all, f_re145_err_all, x_arr):
     fig.tight_layout()    
     plt.savefig('figures/Figure_12b_fx_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_fx
+
+def dissipation_spectra(karr_list, dissipation_spectra, time_list, Re_list):
+    fig = plt.figure(figsize=(8,5))
+    ax_72norm = fig.add_subplot(1,1,1)
+
+    for i in range(time_list.shape[0]):
+        ax_72norm.loglog(karr_list[i], dissipation_spectra[i], label = '$t/T= {:.2f}, Re_{{\lambda}}= {:.1f}$'.format(time_list[i], Re_list[i]))
+
+    ax_72norm.set_title('(a) Compensated Energy Spectrum for BS spectra ($Re_{\lambda}=93$)', fontsize=18)
+    ax_72norm.set_xlabel('$k\eta$', fontsize=22)
+    ax_72norm.set_ylabel(r'$\frac{E(k)}{\epsilon^{2/3} k^{-5/3}}$', fontsize=22, rotation=0, labelpad=50)
+    # plt.xlim(1e0*kol_length_li[0], 1024*kol_length_li[-1])
+    plt.ylim(1e-27, 1e2)
+    ax_72norm.tick_params(axis='both', which='major', labelsize=15)
+    ax_72norm.legend(fontsize=15)
+    fig.tight_layout()
+    plt.savefig('figures/Figure_14a_dissipation_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax_72norm
+    
+def dissipation_spectra_slope(slope_karr_list, slope_list, time_list, k_eta_list):
+    fig = plt.figure(figsize=(8,5))
+    ax_local_slope = fig.add_subplot(1,1,1)
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+    for i in range(time_list.shape[0]):
+        ax_local_slope.plot(slope_karr_list[i], slope_list[i], label = '$t/T= {:.2f}, k_{{max}}\eta= {:.1f}$'.format(time_list[i], k_eta_list[i]), color=colors[i])
+
+    ax_local_slope.set_title('(b) Spectral Slope for BS spectra ($Re_{\\lambda}=93$)', fontsize=18)
+    ax_local_slope.set_xlabel('$k\eta$', fontsize=22)
+    ax_local_slope.set_ylabel(r'$\frac{d\ln E(k)}{d\ln k}$', fontsize=22, rotation=0, labelpad=40)
+    plt.xlim(0, 12)
+    plt.ylim(-60, 0)
+    ax_local_slope.tick_params(axis='both', which='major', labelsize=15)
+    ax_local_slope.legend(fontsize=14)
+    fig.tight_layout()
+    plt.savefig('figures/Figure_14b_local_slope_dissipation_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax_local_slope
