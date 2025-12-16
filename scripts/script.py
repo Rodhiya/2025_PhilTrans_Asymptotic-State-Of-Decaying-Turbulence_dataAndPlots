@@ -3,6 +3,7 @@ import scipy as sp
 import matplotlib.pyplot as plt
 from scipy.signal import savgol_filter
 from scipy.interpolate import interp1d
+from scipy.optimize import minimize
 from scipy.interpolate import UnivariateSpline
 from scipy.ndimage import gaussian_filter1d
 import linecache
@@ -787,3 +788,31 @@ def spectral_slope_new_2(karr, spectrum, s_factor):
     # slope_dense, _ = get_slope(x_dense, E_dense)
 
     return np.exp(x_dense), np.exp(log_E_smooth), slope_dense
+
+def optimize_migdal(totE, migdal_len, log_E_L_temp):
+    def obj_fun(params):
+        ai, bi = params
+        shasha_l_inter = sp.interpolate.interp1d(x=log_E_L_temp[:,0], y=log_E_L_temp[:,1])
+        error_arr = np.log(totE) - (ai + shasha_l_inter(np.log(migdal_len)+bi))
+        err_mse = np.sum(np.power(error_arr, 2))
+        return err_mse
+    
+    totE = np.array(totE)
+    migdal_len = np.array(migdal_len)
+    log_E_L_temp = np.array(log_E_L_temp)
+
+    e0 = np.min(log_E_L_temp[:,0])
+    e1 = np.max(log_E_L_temp[:,0])
+    # print("e0: ", e0)
+    # print("e1: ", e1)
+    # print("migdal_len.shape: ", migdal_len.shape)
+    # print("migdal length type: ", type(migdal_len))
+    I0 = np.log(migdal_len[0])
+    I1 = np.log(migdal_len[-1])
+    # print("I0: ", I0)
+    # print("I1: ", I1)
+    # print("e0-I0, e1-I1: ", e0-I0, e1-I1)
+    initial_guess = [-2.974925, 8.916358675528612]
+    bounds = [(None, None),(e0-I0, e1-I1)]
+    result = minimize(obj_fun, initial_guess, method='L-BFGS-B',bounds=bounds)
+    return result

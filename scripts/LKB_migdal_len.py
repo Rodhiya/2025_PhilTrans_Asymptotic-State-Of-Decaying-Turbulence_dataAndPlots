@@ -29,4 +29,14 @@ fig_migdal_len, ax_migdal_len = plotting_LKB.migdal_len(time_list, migdal_len_li
 
 fig_parabolaFit, ax_parabolaFit = plotting_LKB.migdalLen_parabolaFit(df_re145['time'], df_re145['MigdalLen'])
 
+
+LKB_results_data_re145 = np.load('data/LKB_results_data_re145.npy', allow_pickle=True)
+cols_ene = ['time', 'totE', 'decay_exp', 'intLen']
+df_re145_ene = pd.DataFrame(LKB_results_data_re145, columns=cols_ene)
+time_re145_ene = df_re145_ene['time']; totE_re145_ene = df_re145_ene['totE']
+
+
+fig_migdal_lenVSene, ax_migdal_lenVSene = plotting_LKB.migdal_lenVSene(time_re145_ene[:], MigdalLen_re145[:], totE_re145_ene[:])
+
+
 plt.show()

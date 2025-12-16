@@ -550,3 +550,47 @@ def migdalLen_parabolaFit(time_re145, migdal_len_re145):
     plt.tight_layout()
     plt.savefig('figures/Figure_10b_migdal_len_parabolaFit_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
+
+
+def migdal_lenVSene(time_re145, migdal_len_re145, totE_re145):
+    log_E_L = np.genfromtxt('data/theoretical_MIG_logLlogE.csv', delimiter=',')
+
+    totE_ln = np.log(totE_re145)
+    migdal_len_ln = np.log(migdal_len_re145)
+
+    time_st = 20
+    time_end = 2000
+    s, _ = sc.find_element(time_re145, time_st)
+    f, _ = sc.find_element(time_re145, time_end)
+    # print("Time at s and f: ", time_re145[s], time_re145[f])
+    
+    result = sc.optimize_migdal(totE_re145[s:f], migdal_len_re145[s:f], log_E_L)
+    # print("after optimization: ", result.x)
+    # fig = plt.figure(figsize=(8,6))
+    # ax_raw = fig.add_subplot(1,1,1)
+    # ax_raw.plot(migdal_len_ln[s:f], totE_ln[s:f], label = "Simulation at $Re_{\\lambda} = 145$: $1/L_M^{2.36}$")
+    # ax_raw.plot(log_E_L[:,0], log_E_L[:,1], label = "Complete theory including all exponents")
+    # ax_raw.set_xlabel('$\ln (L_M)$', fontsize=20)
+    # ax_raw.set_ylabel(r'$\ln (E_n)$', fontsize=22, rotation=0, labelpad=40)
+    # ax_raw.set_title('Migdal Scaling', fontsize=20)
+    # ax_raw.tick_params(axis='both', which='major', labelsize=16)
+    # ax_raw.legend(fontsize=14)
+    # ax_raw.quiver(migdal_len_ln[2500], totE_ln[2500], result.x[1], -1*result.x[0], angles='xy', scale_units='xy', scale=1, color='k')
+    # fig.tight_layout()
+
+    fig = plt.figure(figsize=(8,6))
+    ax_shifted = fig.add_subplot(1,1,1)
+    ax_shifted.plot(migdal_len_ln[s:f]+result.x[1], totE_ln[s:f]-result.x[0], label = "Simulation at $Re_{\lambda} = 145$: $1/L_M^{2.36}$")
+    ax_shifted.plot(log_E_L[:,0], log_E_L[:,1], label = "Complete theory including all exponents")
+    ax_shifted.set_xlabel('$\ln (L_M)$', fontsize=20)
+    ax_shifted.set_ylabel(r'$\ln (E_n)$', fontsize=22, rotation=0, labelpad=40)
+    ax_shifted.set_title('(a) Energy vs Migdal length for BS spectra ($Re_{\\lambda}=145$)', fontsize=20)
+    ax_shifted.text(0.05, 0.6, "Migdal's theory", fontsize=18, color='#ff7f0e', transform=ax_shifted.transAxes)
+    ax_shifted.text(0.45, 0.6, "Simulation: $Re_{\\lambda}=145$", fontsize=18, color='#1f77b4', transform=ax_shifted.transAxes)
+    ax_shifted.tick_params(axis='both', which='major', labelsize=16)
+    ax_shifted.set_ylim(totE_ln[f]-result.x[0],totE_ln[s]-result.x[0])
+    ax_shifted.set_xlim(migdal_len_ln[s]+result.x[1],migdal_len_ln[f]+result.x[1])  
+    # ax_shifted.legend(fontsize=14)
+    fig.tight_layout()
+    plt.savefig('figures/Figure_11a_migdal_lenVSene_BS.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax_shifted
