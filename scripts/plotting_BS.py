@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import script as sc
 import matplotlib as mpl
+# import matplotlib.colors as mcolors
 mpl.rcParams['text.usetex'] = True
 
 
@@ -551,7 +552,6 @@ def migdalLen_parabolaFit(time_re145, migdal_len_re145):
     plt.savefig('figures/Figure_10b_migdal_len_parabolaFit_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
-
 def migdal_lenVSene(time_re145, migdal_len_re145, totE_re145):
     log_E_L = np.genfromtxt('data/theoretical_MIG_logLlogE.csv', delimiter=',')
 
@@ -672,3 +672,29 @@ def dissipation_spectra_slope(slope_karr_list, slope_list, time_list, k_eta_list
     fig.tight_layout()
     plt.savefig('figures/Figure_14b_local_slope_dissipation_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_local_slope
+
+def gridMod_eff(time_list, eff_ind_list):
+    fig = plt.figure(figsize=(6.5,5))
+    ax_eff = fig.add_subplot(1,1,1)
+
+    ax_eff.plot(time_list[0], eff_ind_list[0], color='k', label = 'Without grid modification')
+    ax_eff.plot(time_list[1], eff_ind_list[1], '--', color='grey', label = 'Grid modification ($k_{max}\\eta = 1.8$)')
+    ax_eff.plot(time_list[2], eff_ind_list[2], '--', color='skyblue', label = 'Grid modification ($k_{max}\\eta = 2.0$)')
+    ax_eff.plot(time_list[3], eff_ind_list[3], '--', color='gold', label = 'Grid modification ($k_{max}\\eta = 2.2$)')
+    ax_eff.plot(time_list[4], eff_ind_list[4], '--', color='cornflowerblue', label = 'Grid modification ($k_{max}\\eta = 3.0$)')
+    ax_eff.plot(time_list[5], eff_ind_list[5], '--', color='lawngreen', label = 'Grid modification ($k_{max}\\eta = 5.0$)')
+    ax_eff.plot(time_list[6], eff_ind_list[6], '--', color='crimson', label = 'Grid modification ($k_{max}\\eta = 6.0$)')
+
+
+    ax_eff.set_title('Decay exponent (n) for $Re_{\\lambda}=93$', fontsize=22)
+    ax_eff.set_xlabel('$t/T_{eddy,0}$', fontsize=22)
+    ax_eff.set_ylabel('$n$', fontsize=22)
+    ax_eff.set_xticks([0, 1000, 2000, 3000])
+    ax_eff.set_yticks([0.8, 1.0, 1.2, 1.4, 1.6])
+    ax_eff.set_xlim(-100,3.5e3)
+    ax_eff.set_ylim(0.75, 1.7)
+    ax_eff.tick_params(axis='both', which='major', labelsize=18)
+    ax_eff.legend(fontsize=14)
+    fig.tight_layout()
+    plt.savefig('figures/Figure_1_gridMod_eff_BS.pdf', dpi=200, bbox_inches = 'tight')
+    return fig, ax_eff
