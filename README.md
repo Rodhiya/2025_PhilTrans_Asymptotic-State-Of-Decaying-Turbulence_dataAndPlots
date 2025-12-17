@@ -34,7 +34,7 @@ To regenerate the figures found in the manuscript, follow these steps:
 git clone https://github.com/Rodhiya/2025_PhilTrans_Asymptotic-State-Of-Decaying-Turbulence_dataAndPlots.git;
 cd 2025_PhilTrans_Asymptotic-State-Of-Decaying-Turbulence_dataAndPlots
 
-3. Generate Figures: Scripts are named according to the dataset and variable they generate.
+3. Generate Figures: Scripts are named according to the Figure number from the paper.
 4. Output: The resulting plots will be saved in the figures/ directory.
 
 ## Data Description
