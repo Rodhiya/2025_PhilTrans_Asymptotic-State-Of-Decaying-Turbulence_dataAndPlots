@@ -14,10 +14,12 @@ This repository contains the processed datasets, analysis scripts, and figure-ge
 
 ```text
 .
-├── data/        # Processed binary data files used for plotting (.npy)
-├── figures/     # Output directory for generated figures
-├── scripts/     # Analysis and figure-generation scripts (Python)
-└── README.md    # This file
+├── data/               # Processed binary data files used for plotting (.npy)
+├── figures/            # Output directory for generated figures
+├── scripts/            # Analysis and figure-generation scripts (Python)
+└── requirements.txt    # List all the dependencies
+└── README.md           # This file
+
 ```
 
 ## Prerequisites
@@ -34,7 +36,10 @@ To regenerate the figures found in the manuscript, follow these steps:
 git clone https://github.com/Rodhiya/2025_PhilTrans_Asymptotic-State-Of-Decaying-Turbulence_dataAndPlots.git;
 cd 2025_PhilTrans_Asymptotic-State-Of-Decaying-Turbulence_dataAndPlots
 
+2. Install dependencies: pip install -r requirements.txt
+
 3. Generate Figures: Scripts are named according to the Figure number from the paper.
+
 4. Output: The resulting plots will be saved in the figures/ directory.
 
 ## Data Description
