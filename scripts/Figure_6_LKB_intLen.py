@@ -6,9 +6,9 @@ import plotting_LKB
 mpl.rcParams['text.usetex'] = True
 
 # load data
-LKB_results_data_re93 = np.load('data/LKB_results_data_re93.npy', allow_pickle=True)
-LKB_results_data_re105 = np.load('data/LKB_results_data_re105.npy', allow_pickle=True)
-LKB_results_data_re145 = np.load('data/LKB_results_data_re145.npy', allow_pickle=True)
+LKB_results_data_re93 = np.load('../data/LKB_results_data_re93.npy', allow_pickle=True)
+LKB_results_data_re105 = np.load('../data/LKB_results_data_re105.npy', allow_pickle=True)
+LKB_results_data_re145 = np.load('../data/LKB_results_data_re145.npy', allow_pickle=True)
 
 # Define your original columns
 cols = ['time', 'totE', 'decay_exp', 'intLen']

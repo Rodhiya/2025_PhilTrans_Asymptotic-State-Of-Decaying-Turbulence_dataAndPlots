@@ -7,12 +7,12 @@ mpl.rcParams['text.usetex'] = True
 
 # load data
 print('1. Loading data...')
-BS_results_data_re30 = np.load('data/BS_results_data_re30.npy', allow_pickle=True)
-BS_results_data_re45 = np.load('data/BS_results_data_re45.npy', allow_pickle=True)
-BS_results_data_re70 = np.load('data/BS_results_data_re70.npy', allow_pickle=True)
-BS_results_data_re93 = np.load('data/BS_results_data_re93.npy', allow_pickle=True)
-BS_results_data_re105 = np.load('data/BS_results_data_re105.npy', allow_pickle=True)
-BS_results_data_re145 = np.load('data/BS_results_data_re145.npy', allow_pickle=True)
+BS_results_data_re30 = np.load('../data/BS_results_data_re30.npy', allow_pickle=True)
+BS_results_data_re45 = np.load('../data/BS_results_data_re45.npy', allow_pickle=True)
+BS_results_data_re70 = np.load('../data/BS_results_data_re70.npy', allow_pickle=True)
+BS_results_data_re93 = np.load('../data/BS_results_data_re93.npy', allow_pickle=True)
+BS_results_data_re105 = np.load('../data/BS_results_data_re105.npy', allow_pickle=True)
+BS_results_data_re145 = np.load('../data/BS_results_data_re145.npy', allow_pickle=True)
 print('  Data loaded successfully!')
 
 # Define your original columns

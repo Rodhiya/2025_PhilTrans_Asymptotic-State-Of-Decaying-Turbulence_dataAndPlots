@@ -46,7 +46,7 @@ def totE(time_list, totE_list):
     ax.set_xlim(1e-1,2.5e4)
     ax.set_ylim(1e-6,1e1)
     plt.tight_layout()
-    plt.savefig('figures/Figure_5a_totE_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_5a_totE_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def eff(time_list, eff_ind_list):
@@ -102,7 +102,7 @@ def eff(time_list, eff_ind_list):
 
 
     plt.tight_layout()
-    plt.savefig('figures/Figure_5b_eff_ind_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_5b_eff_ind_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def intLen(time_list, intLen_list):
@@ -144,7 +144,7 @@ def intLen(time_list, intLen_list):
     ax.set_xlim(1e-1,2.5e4)
     ax.set_ylim(5e-3,1e0)
     plt.tight_layout()
-    plt.savefig('figures/Figure_6_intLen_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_6_intLen_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
     
 def ene_spect(karr_list, ene_spect_list, time_arr, intLen_list):
@@ -188,7 +188,7 @@ def ene_spect(karr_list, ene_spect_list, time_arr, intLen_list):
     # ax_spect.text(2e1, 2e-4, 'Slope = $-1$', fontsize=14)
     ax_spect.set_xlim([1, 2e3])
     ax_spect.set_ylim([1e-15, 1e-1])
-    plt.savefig('figures/Figure_8a_ene_spectra_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_8a_ene_spectra_LKB.pdf', dpi=200, bbox_inches = 'tight')
     fig.tight_layout()
     return fig, ax_spect
 
@@ -233,7 +233,7 @@ def ene_spect_norm(karr_list, ene_spect_list, time_arr, intLen_list, nu):
     ax_spect_norm.set_xlim([1e-2, 3e2])
     ax_spect_norm.set_ylim([1e-10, 1e1])
     fig.tight_layout()
-    plt.savefig('figures/Figure_8b_ene_spectra_norm_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_8b_ene_spectra_norm_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_spect_norm
     
 def ene_spect_slope(karr_list, spect_slope_list, time_arr):
@@ -256,7 +256,7 @@ def ene_spect_slope(karr_list, spect_slope_list, time_arr):
     ax_slope.tick_params(axis='both', which='major', labelsize=16)
     ax_slope.legend(fontsize=14)   
     fig.tight_layout()
-    plt.savefig('figures/Figure_9b_ene_slope_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_9b_ene_slope_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_slope
 
 
@@ -300,7 +300,7 @@ def migdal_len(time_list, migdal_len_list):
     ax.set_xlim(1e-1,1e4)
     ax.set_ylim(1e-4,1e-1)
     plt.tight_layout()
-    plt.savefig('figures/Figure_10c_migdal_len_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_10c_migdal_len_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def migdalLen_parabolaFit(time_re145, migdal_len_re145):
@@ -347,12 +347,12 @@ def migdalLen_parabolaFit(time_re145, migdal_len_re145):
     ax.set_ylim(20,2000)
     ax.legend(fontsize=16)
     plt.tight_layout()
-    plt.savefig('figures/Figure_10d_migdal_len_parabolaFit_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_10d_migdal_len_parabolaFit_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 
 def migdal_lenVSene(time_re145, migdal_len_re145, totE_re145):
-    log_E_L = np.genfromtxt('data/theoretical_MIG_logLlogE.csv', delimiter=',')
+    log_E_L = np.genfromtxt('../data/theoretical_MIG_logLlogE.csv', delimiter=',')
 
     totE_ln = np.log(totE_re145)
     migdal_len_ln = np.log(migdal_len_re145)
@@ -393,13 +393,13 @@ def migdal_lenVSene(time_re145, migdal_len_re145, totE_re145):
     ax_shifted.set_xlim(migdal_len_ln[s]+result.x[1],migdal_len_ln[f]+result.x[1])  
     # ax_shifted.legend(fontsize=14)
     fig.tight_layout()
-    fig.savefig("figures/Figure_11b_migdal_lenVSene_LKB.pdf", dpi=300, bbox_inches = 'tight')
+    fig.savefig("../figures/Figure_11b_migdal_lenVSene_LKB.pdf", dpi=300, bbox_inches = 'tight')
     return fig, ax_shifted
 
 
 def zeta2(zeta2_array, time_array, x_arr, f_re145_value_all):
     
-    shash_theory_long = np.genfromtxt("data/theoretical_strFun_slope.csv",delimiter=",")
+    shash_theory_long = np.genfromtxt("../data/theoretical_strFun_slope.csv",delimiter=",")
     diff = sc.mean_of_curves(np.log(x_arr),f_re145_value_all,shash_theory_long[:,1]-0.0,shash_theory_long[:,0])
     fig = plt.figure()
     ax_zeta2 = fig.add_subplot(111)
@@ -416,11 +416,11 @@ def zeta2(zeta2_array, time_array, x_arr, f_re145_value_all):
     # ax_zeta2.set_ylim([0,1])
     ax_zeta2.legend(fontsize=16)
     fig.tight_layout()
-    # plt.savefig('figures/Figure_13a_zeta2_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    # plt.savefig('../figures/Figure_13a_zeta2_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_zeta2
 
 def fx(f_re145_value_all, f_re145_err_all, x_arr):
-    shash_theory_long = np.genfromtxt("data/theoretical_strFun_slope.csv",delimiter=",")
+    shash_theory_long = np.genfromtxt("../data/theoretical_strFun_slope.csv",delimiter=",")
     diff = sc.mean_of_curves(np.log(x_arr),f_re145_value_all,shash_theory_long[:,1]-0.0,shash_theory_long[:,0])
 
     fig = plt.figure()
@@ -436,7 +436,7 @@ def fx(f_re145_value_all, f_re145_err_all, x_arr):
     ax_fx.tick_params(axis='both', which='major', labelsize=18)
 
     fig.tight_layout()    
-    # plt.savefig('figures/Figure_13b_fx_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    # plt.savefig('../figures/Figure_13b_fx_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_fx
 
 def ene_spect_t0(karr_list, ene_spect_t0_list):
@@ -462,5 +462,5 @@ def ene_spect_t0(karr_list, ene_spect_t0_list):
     ax.set_ylim(1e-7,1e0)
     ax.tick_params(axis='both', which='major', labelsize=15)
     fig.tight_layout()
-    plt.savefig('figures/Figure_1b_ene_spect_t0_LKB.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_1b_ene_spect_t0_LKB.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax

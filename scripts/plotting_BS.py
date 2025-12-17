@@ -54,7 +54,7 @@ def totE(time_list, totE_list):
     ax.set_yticks([1e-6, 1e-4, 1e-2, 1e0])
     # ax.set_yticklabels([1e-6, 1e-4, 1e-2, 1])
     plt.tight_layout()
-    plt.savefig('figures/Figure_3a_kinetic_energy_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_3a_kinetic_energy_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def decay_exp(time_list, decay_exp_list):
@@ -118,7 +118,7 @@ def decay_exp(time_list, decay_exp_list):
     # ax.set_ylim(0.0,1.8)
     ax_eff.set_ylim(0.0,1.8)
     plt.tight_layout()
-    plt.savefig('figures/Figure_3b_decay_exponent_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_3b_decay_exponent_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_eff
 
 def intLen(time_list, intLen_list):
@@ -172,7 +172,7 @@ def intLen(time_list, intLen_list):
     ax.set_xlim(1e-1,1e4)
     ax.set_ylim(5e-3,1e0)
     plt.tight_layout()
-    plt.savefig('figures/Figure_4a_intLen_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_4a_intLen_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def lambda_plot(time_list, lambda_list):
@@ -228,7 +228,7 @@ def lambda_plot(time_list, lambda_list):
     ax.set_ylim(1e-3,1e0)
     ax.legend(fontsize=18)
     plt.tight_layout()
-    plt.savefig('figures/Figure_4b_lambda_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_4b_lambda_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def kol(time_list, kol_list):
@@ -283,7 +283,7 @@ def kol(time_list, kol_list):
     ax.set_ylim(1e-5,1e-1)
     # ax.legend(fontsize=18)
     plt.tight_layout()
-    plt.savefig('figures/Figure_4c_kol_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_4c_kol_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def reLam(time_list, reLam_list):
@@ -334,7 +334,7 @@ def reLam(time_list, reLam_list):
     ax.set_ylim(1e0,2e2)
     # ax.legend(fontsize=14)
     plt.tight_layout()
-    plt.savefig('figures/Figure_4d_reLam_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_4d_reLam_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def ene_spect(karr_list, ene_spect_list, time_arr, intLen_list):
@@ -378,7 +378,7 @@ def ene_spect(karr_list, ene_spect_list, time_arr, intLen_list):
     ax_spect.text(2.5e1, 2.5e-4, '$k^{-1}$', fontsize=20)
     ax_spect.set_xlim([1e0, 2e3])
     ax_spect.set_ylim([1e-14, 1e0])
-    plt.savefig('figures/Figure_7a_ene_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_7a_ene_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
     fig.tight_layout()
     return fig, ax_spect
 
@@ -400,7 +400,7 @@ def ene_spect_norm(karr_list, ene_spect_list, time_arr, intLen_list, nu):
     ax_spect_norm.set_ylabel(r'$\frac{E(k)}{E_n L}$', fontsize=22, rotation=0, labelpad=15)
     ax_spect_norm.set_title('(b) Normalized Energy Spectrum for BS spectra ($Re_{\lambda}=105$)', fontsize=20)
     ax_spect_norm.tick_params(axis='both', which='major', labelsize=18)
-    ax_spect_norm.legend(fontsize=14)
+    # ax_spect_norm.legend(fontsize=14)
 
     # 1. Set major ticks to be visible on all four sides (top, bottom, left, right)
     ax_spect_norm.tick_params(axis='both', which='major', labelsize=18,
@@ -423,7 +423,7 @@ def ene_spect_norm(karr_list, ene_spect_list, time_arr, intLen_list, nu):
     ax_spect_norm.set_xlim([1e-2, 3e2])
     ax_spect_norm.set_ylim([1e-8, 1e1])
     fig.tight_layout()
-    plt.savefig('figures/Figure_7b_ene_spectra_norm_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_7b_ene_spectra_norm_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_spect_norm
     
 def ene_spect_slope(karr_list, spect_slope_list, time_arr):
@@ -446,7 +446,7 @@ def ene_spect_slope(karr_list, spect_slope_list, time_arr):
     ax_slope.tick_params(axis='both', which='major', labelsize=16)
     ax_slope.legend(fontsize=14)   
     fig.tight_layout()
-    plt.savefig('figures/Figure_9a_ene_slope_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_9a_ene_slope_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_slope
 
 def migdal_len(time_list, migdal_len_list):
@@ -495,7 +495,7 @@ def migdal_len(time_list, migdal_len_list):
     ax.set_xlim(1e-1,1e4)
     ax.set_ylim(1e-4,1e-1)
     plt.tight_layout()
-    plt.savefig('figures/Figure_10a_migdal_len_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_10a_migdal_len_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def migdalLen_parabolaFit(time_re145, migdal_len_re145):
@@ -549,11 +549,11 @@ def migdalLen_parabolaFit(time_re145, migdal_len_re145):
     ax.legend(fontsize=16,loc='upper left')
 
     plt.tight_layout()
-    plt.savefig('figures/Figure_10b_migdal_len_parabolaFit_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_10b_migdal_len_parabolaFit_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
 
 def migdal_lenVSene(time_re145, migdal_len_re145, totE_re145):
-    log_E_L = np.genfromtxt('data/theoretical_MIG_logLlogE.csv', delimiter=',')
+    log_E_L = np.genfromtxt('../data/theoretical_MIG_logLlogE.csv', delimiter=',')
 
     totE_ln = np.log(totE_re145)
     migdal_len_ln = np.log(migdal_len_re145)
@@ -592,12 +592,12 @@ def migdal_lenVSene(time_re145, migdal_len_re145, totE_re145):
     ax_shifted.set_xlim(migdal_len_ln[s]+result.x[1],migdal_len_ln[f]+result.x[1])  
     # ax_shifted.legend(fontsize=14)
     fig.tight_layout()
-    plt.savefig('figures/Figure_11a_migdal_lenVSene_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_11a_migdal_lenVSene_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_shifted
 
 def zeta2(zeta2_array, time_array, x_arr, f_re145_value_all):
     
-    shash_theory_long = np.genfromtxt("data/theoretical_strFun_slope.csv",delimiter=",")
+    shash_theory_long = np.genfromtxt("../data/theoretical_strFun_slope.csv",delimiter=",")
     diff = sc.mean_of_curves(np.log(x_arr),f_re145_value_all,shash_theory_long[:,1]-0.0,shash_theory_long[:,0])
     fig = plt.figure()
     ax_zeta2 = fig.add_subplot(111)
@@ -614,11 +614,11 @@ def zeta2(zeta2_array, time_array, x_arr, f_re145_value_all):
     # ax_zeta2.set_ylim([0,1])
     ax_zeta2.legend(fontsize=16)
     fig.tight_layout()
-    plt.savefig('figures/Figure_12a_zeta2_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_12a_zeta2_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_zeta2
 
 def fx(f_re145_value_all, f_re145_err_all, x_arr):
-    shash_theory_long = np.genfromtxt("data/theoretical_strFun_slope.csv",delimiter=",")
+    shash_theory_long = np.genfromtxt("../data/theoretical_strFun_slope.csv",delimiter=",")
     diff = sc.mean_of_curves(np.log(x_arr),f_re145_value_all,shash_theory_long[:,1]-0.0,shash_theory_long[:,0])
 
     fig = plt.figure()
@@ -634,7 +634,7 @@ def fx(f_re145_value_all, f_re145_err_all, x_arr):
     ax_fx.tick_params(axis='both', which='major', labelsize=18)
 
     fig.tight_layout()    
-    plt.savefig('figures/Figure_12b_fx_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_12b_fx_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_fx
 
 def dissipation_spectra(karr_list, dissipation_spectra, time_list, Re_list):
@@ -652,7 +652,7 @@ def dissipation_spectra(karr_list, dissipation_spectra, time_list, Re_list):
     ax_72norm.tick_params(axis='both', which='major', labelsize=15)
     ax_72norm.legend(fontsize=15)
     fig.tight_layout()
-    plt.savefig('figures/Figure_14a_dissipation_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_14a_dissipation_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_72norm
     
 def dissipation_spectra_slope(slope_karr_list, slope_list, time_list, k_eta_list):
@@ -670,7 +670,7 @@ def dissipation_spectra_slope(slope_karr_list, slope_list, time_list, k_eta_list
     ax_local_slope.tick_params(axis='both', which='major', labelsize=15)
     ax_local_slope.legend(fontsize=14)
     fig.tight_layout()
-    plt.savefig('figures/Figure_14b_local_slope_dissipation_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_14b_local_slope_dissipation_spectra_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_local_slope
 
 def gridMod_eff(time_list, eff_ind_list):
@@ -696,7 +696,7 @@ def gridMod_eff(time_list, eff_ind_list):
     ax_eff.tick_params(axis='both', which='major', labelsize=18)
     ax_eff.legend(fontsize=14)
     fig.tight_layout()
-    plt.savefig('figures/Figure_2_gridMod_eff_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_2_gridMod_eff_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax_eff
 
 def ene_spect_t0(karr_list, ene_spect_t0_list):
@@ -722,5 +722,5 @@ def ene_spect_t0(karr_list, ene_spect_t0_list):
     ax.set_ylim(1e-6,1e0)
     ax.tick_params(axis='both', which='major', labelsize=15)
     fig.tight_layout()
-    plt.savefig('figures/Figure_1a_ene_spect_t0_BS.pdf', dpi=200, bbox_inches = 'tight')
+    plt.savefig('../figures/Figure_1a_ene_spect_t0_BS.pdf', dpi=200, bbox_inches = 'tight')
     return fig, ax
