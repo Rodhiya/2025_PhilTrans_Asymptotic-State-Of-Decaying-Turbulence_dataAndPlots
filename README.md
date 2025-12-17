@@ -18,6 +18,7 @@ This repository contains the processed datasets, analysis scripts, and figure-ge
 ├── figures/            # Output directory for generated figures
 ├── scripts/            # Analysis and figure-generation scripts (Python)
 └── requirements.txt    # List all the dependencies
+└── LICENSE             # License file
 └── README.md           # This file
 
 ```
